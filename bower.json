@@ -1,0 +1,22 @@
+{
+  "name": "tomato-goals-nodejs",
+  "version": "0.0.1",
+  "authors": [
+    "alincode@gmail.com"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  },
+  "homepage": "https://github.com/alincode/tomato-goals-nodejs",
+  "description": "tomoto goals",
+  "main": "",
+  "moduleType": []
+}
