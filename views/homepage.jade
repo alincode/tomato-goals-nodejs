@@ -13,5 +13,38 @@ block body
             a(href="#setting")  Setting
           li
             a(href="#faq")  FAQ
-  div(class="container")
-    
+            
+  div(class="container-fluid")
+    div(class="row")
+      div(class="btn-group btn-group-justified" role="group")
+        div(class="btn-group" role="group")
+          button(type="button" class="btn btn-info") Pomodoro
+        div(class="btn-group" role="group")
+          button(type="button" class="btn btn-info") Short Break  
+        div(class="btn-group" role="group")
+          button(type="button" class="btn btn-info") Long Break
+
+    div(class="row")
+      button(type="button" class="btn btn-success btn-lg col-md-2 col-md-offset-3") Start
+      button(type="button" class="btn btn-danger btn-lg col-md-2") Stop
+      button(type="button" class="btn btn-default btn-lg col-md-2") Reset
+
+    div(class="row" id="clock")
+      
+    div(class="row")  
+      div(class="panel panel-default col-md-5 col-md-offset-1")
+        div(class="panel-heading")  Keyboard Shortcuts
+        div(class="panel-body")
+          dl(class="dl-horizontal")
+            dt  SPACE
+            dd  Start or Stop the timer
+            dt  SPACE
+            dd  Start or Stop the timer
+            dt  SPACE
+            dd  Start or Stop the timer
+
+
+      div(class="panel panel-default col-md-5")
+        div(class="panel-heading")  Notifications
+        div(class="panel-body")
+          Panel content
