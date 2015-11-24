@@ -15,7 +15,8 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "howler.js": "howler#~1.1.28",
-    "jquery.countdown": "~2.1.0"
+    "jquery.countdown": "~2.1.0",
+    "bootstrap": "~3.3.5"
   },
   "homepage": "https://github.com/alincode/tomato-goals-nodejs",
   "description": "tomoto goals",
