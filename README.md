@@ -16,3 +16,11 @@ Just for learn Node.Js and have fun.
 grunt
 npm start
 ```
+
+## TODO
+- [ ] big countdown style
+- [ ] add auto test mocha / geb
+- [ ] add HTML5 local db / MongoDB
+- [ ] add Login
+- [ ] add keyboard shortcut
+- [ ] improve UI
