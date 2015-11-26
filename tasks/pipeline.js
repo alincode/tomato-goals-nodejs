@@ -30,8 +30,9 @@ var jsFilesToInject = [
 
   // Dependencies like jQuery, or Angular are brought in here
   'bower/jquery/*.js',
-  'bower/howler.js/howler.js',
-  'bower/jquery.countdown/jquery.countdown.js',
+  'bower/howler.js/*.js',
+  'bower/jquery.countdown/*.js',
+  'bower/ion-sound/*.js',
   'js/dependencies/**/*.js',
 
   // All of the rest of your client-side js files

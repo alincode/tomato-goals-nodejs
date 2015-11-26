@@ -19,6 +19,11 @@ module.exports = function(grunt) {
 		dev: {
 			files: [{
 				expand: true,
+				cwd: './bower_components/ion-sound/sounds',
+				src: ['**/*.*'],
+				dest: '.tmp/public/sounds'
+			},{
+				expand: true,
 				cwd: './assets',
 				src: ['**/*.!(coffee|less|scss)'],
 				dest: '.tmp/public'

@@ -16,6 +16,9 @@ tomatoGoals.timer = {
 
     $('#start').click({commend:'resume'}, this.handler._commend);
     $('#stop').click({commend:'pause'}, this.handler._commend);
+
+    tomatoGoals.history.updateNotifications();
+    tomatoGoals.bell.init();
   },
   _setClockFormat: function() {
     var minuteDate = this._getminuteFromNow(0);
@@ -64,6 +67,7 @@ tomatoGoals.timer = {
         tomatoGoals.history.setTomatoTime(minute);
       }
       tomatoGoals.history.updateNotifications();
+      tomatoGoals.bell.play();
     }
   }
 }
@@ -113,7 +117,26 @@ tomatoGoals.history = {
   }
 }
 
+tomatoGoals.bell = {
+  init: function(){
+    ion.sound({
+        sounds: [{
+          name: "door_bell",
+          volume: 0.5,
+          preload: false,
+          loop: 3
+        }],
+        volume: 0.5,
+        path: "sounds/",
+        preload: true
+    });
+  },
+  play: function(){
+    console.log('bell play');
+    ion.sound.play('door_bell');
+  }
+}
+
 $(document).ready(function() {
   tomatoGoals.timer.init();
-  tomatoGoals.history.updateNotifications();
 });
