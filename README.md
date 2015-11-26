@@ -2,7 +2,7 @@
 
 This is a toy project.
 
-Just for learn Node.Js and have fun.
+Just doing for fun and learn NodeJs.
 
 ## Use
 - Sails
@@ -19,7 +19,7 @@ npm start
 
 ## TODO
 - [ ] big countdown style
-- [ ] add auto test mocha / geb
+- [ ] make things testable, add auto test mocha / geb
 - [ ] add HTML5 local db / MongoDB
 - [ ] add Login
 - [ ] add keyboard shortcut

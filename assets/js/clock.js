@@ -1,12 +1,17 @@
 var tomatoGoals = {};
 
-tomatoGoals.countdown = {
-  clock: $('#clock'),
+tomatoGoals.timer = {
+  clock: $('#countdown'),
+  myCountDown : '',
+  currentCountDownMinute : 0,
+  currentCountDownType : '',
   init: function() {
     this._setClockFormat();
-    $('#pomodoro').click({minute:25}, this.handler._countdown);
-    $('#short-break').click({minute:5}, this.handler._countdown);
-    $('#long-break').click({minute:10}, this.handler._countdown);
+    this.myCountDown.on('finish.countdown', this.handler._finishCountdown);
+
+    $('#pomodoro').click({minute:1, type: 'tomato'}, this.handler._countdown);
+    $('#short-break').click({minute:1, type: 'break'}, this.handler._countdown);
+    $('#long-break').click({minute:10, type: 'break'}, this.handler._countdown);
     $('#reset').click({minute:0}, this.handler._countdown);
 
     $('#start').click({commend:'resume'}, this.handler._commend);
@@ -14,7 +19,7 @@ tomatoGoals.countdown = {
   },
   _setClockFormat: function() {
     var minuteDate = this._getminuteFromNow(0);
-    $(clock).countdown(minuteDate, function(event) {
+    this.myCountDown = this.clock.countdown(minuteDate, function(event) {
       var time = event.strftime('%H:%M:%S');
       $(this).html(time);
     });
@@ -25,15 +30,67 @@ tomatoGoals.countdown = {
   handler : {
     _commend: function(eventObject) {
       console.log('commend:' + eventObject.data.commend);
-      $(clock).countdown(eventObject.data.commend);
+      var that = tomatoGoals.timer;
+      that.myCountDown.countdown(eventObject.data.commend);
     },
     _countdown: function(eventObject) {
-      console.log('minute:' + eventObject.data.minute);
-      $(clock).countdown(tomatoGoals.countdown._getminuteFromNow(eventObject.data.minute));
+      var minute = eventObject.data.minute;
+      var that = tomatoGoals.timer;
+      that.currentCountDownMinute = minute;
+      that.currentCountDownType = eventObject.data.type;
+      console.log('minute:' + minute);
+      var countdown = that.myCountDown.countdown(that._getminuteFromNow(minute));
+    },
+    _finishCountdown: function(event){
+      // http://hilios.github.io/jQuery.countdown/documentation.html
+      var that = tomatoGoals.timer;
+      var minute = that.currentCountDownMinute;
+      console.log('finish countdown ' + minute + ' minute.');
+      if(that.currentCountDownType === 'break'){
+        tomatoGoals.history.setBreakTime(minute);
+      }else{
+        tomatoGoals.history.setTomatoTime(minute);
+      }
+      tomatoGoals.history.updateNotifications();
     }
   }
 }
 
+tomatoGoals.history = {
+  tomotoTimeKey : 'tomotoTime',
+  breakTimeKey : 'breakTime',
+  setTomatoTime : function(minute){
+    if(this.isAvailableRecordHistory()){
+      this.addItem(this.tomotoTimeKey, minute);
+    }
+  },
+  setBreakTime : function(minute){
+    if(this.isAvailableRecordHistory()){
+      this.addItem(this.breakTimeKey, minute);
+    }
+  },
+  isAvailableRecordHistory: function(){
+    return (typeof(Storage) !== "undefined");
+  },
+  addItem: function(key, val){
+    var oldValue = this.getItem(key);
+    // console.log('addItem ---> oldValue:' + oldValue + ', val:' + val);
+    localStorage.setItem(key, oldValue + val);
+  },
+  getItem: function(key){
+    var val = localStorage.getItem(key);
+    if(val == null) return 0;
+    else return parseInt(val, 10);
+  },
+  updateNotifications: function(){
+    console.log('update notifications');
+    var message = 'Total tomato time is ' + this.getItem(this.tomotoTimeKey) +
+      ' minutes , break time is ' + this.getItem(this.breakTimeKey) + ' minutes.';
+    $('#notifications-panel').html(message);
+  }
+}
+
 $(document).ready(function() {
-  tomatoGoals.countdown.init();
+  tomatoGoals.timer.init();
+  tomatoGoals.history.updateNotifications();
 });
