@@ -24,3 +24,8 @@ npm start
 - [ ] big countdown style
 - [ ] add Login
 - [ ] improve UI
+
+## Plugin
+- [hotkeys](https://github.com/tzuryby/jquery.hotkeys)
+- [ion sound](https://github.com/IonDen/ion.sound)
+- [jquery countdown](http://hilios.github.io/jQuery.countdown)
