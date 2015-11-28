@@ -5,20 +5,27 @@ tomatoGoals.timer = {
   myCountDown : '',
   currentCountDownMinute : 0,
   currentCountDownType : '',
+  pomodoro: $('#pomodoro'),
+  shortBreak: $('#short-break'),
+  longBreak: $('#long-break'),
+  reset: $('#reset'),
+  start: $('#start'),
+  stop: $('#stop'),
   init: function() {
     this._setClockFormat();
     this.myCountDown.on('finish.countdown', this.handler._finishCountdown);
 
-    $('#pomodoro').click({minute:25, type: 'tomato'}, this.handler._countdown);
-    $('#short-break').click({minute:5, type: 'break'}, this.handler._countdown);
-    $('#long-break').click({minute:10, type: 'break'}, this.handler._countdown);
-    $('#reset').click({minute:0, type: 'reset'}, this.handler._countdown);
+    this.pomodoro.click({minute:25, type: 'tomato'}, this.handler._countdown);
+    this.shortBreak.click({minute:5, type: 'break'}, this.handler._countdown);
+    this.longBreak.click({minute:10, type: 'break'}, this.handler._countdown);
+    this.reset.click({minute:0, type: 'reset'}, this.handler._countdown);
 
-    $('#start').click({commend:'resume'}, this.handler._commend);
-    $('#stop').click({commend:'pause'}, this.handler._commend);
+    this.start.click({commend:'resume'}, this.handler._commend);
+    this.stop.click({commend:'pause'}, this.handler._commend);
 
     tomatoGoals.history.updateNotifications();
     tomatoGoals.bell.init();
+    tomatoGoals.shortcut.init();
   },
   _setClockFormat: function() {
     var minuteDate = this._getminuteFromNow(0);
@@ -76,13 +83,14 @@ tomatoGoals.history = {
   tomotoTimeKey : 'tomotoTime',
   breakTimeKey : 'breakTime',
   setTomatoTime : function(minute){
-    if(this.isAvailableRecordHistory()){
-      this.addItem(this.tomotoTimeKey, minute);
-    }
+    this._setTime(this.tomotoTimeKey, minute);
   },
   setBreakTime : function(minute){
+    this._setTime(this.breakTimeKey, minute);
+  },
+  _setTime: function(key, minute){
     if(this.isAvailableRecordHistory()){
-      this.addItem(this.breakTimeKey, minute);
+      this.addItem(key, minute);
     }
   },
   isAvailableRecordHistory: function(){
@@ -134,6 +142,22 @@ tomatoGoals.bell = {
   play: function(){
     console.log('bell play');
     ion.sound.play('door_bell');
+  }
+}
+
+tomatoGoals.shortcut = {
+  init: function(){
+    var that = tomatoGoals.timer
+    this.bind('keydown.space', that.stop);
+    this.bind('keydown.alt_p', that.pomodoro);
+    this.bind('keydown.alt_s', that.shortBreak);
+    this.bind('keydown.alt_l', that.longBreak);
+  },
+  bind: function(eventType, element){
+    $(document).bind(eventType, function (evt){
+      element.click();
+      return false;
+    });
   }
 }
 

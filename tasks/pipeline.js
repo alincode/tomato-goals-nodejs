@@ -33,6 +33,7 @@ var jsFilesToInject = [
   'bower/howler.js/*.js',
   'bower/jquery.countdown/*.js',
   'bower/ion-sound/*.js',
+  'bower/jquery.hotkeys/jquery.hotkeys.js',
   'js/dependencies/**/*.js',
 
   // All of the rest of your client-side js files

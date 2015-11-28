@@ -17,7 +17,8 @@
     "howler.js": "howler#~1.1.28",
     "jquery.countdown": "~2.1.0",
     "bootstrap": "~3.3.5",
-    "ion-sound": "ionsound#~3.0.6"
+    "ion-sound": "ionsound#~3.0.6",
+    "jquery.hotkeys": "*"
   },
   "homepage": "https://github.com/alincode/tomato-goals-nodejs",
   "description": "tomoto goals",
