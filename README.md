@@ -18,9 +18,9 @@ npm start
 ```
 
 ## TODO
-- [ ] big countdown style
+- [x] add HTML5 local db
+- [x] add keyboard shortcut
 - [ ] make things testable, add auto test mocha / geb
-- [ ] add HTML5 local db / MongoDB
+- [ ] big countdown style
 - [ ] add Login
-- [ ] add keyboard shortcut
 - [ ] improve UI
