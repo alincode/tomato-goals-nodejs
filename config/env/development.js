@@ -17,8 +17,21 @@ module.exports = {
    * environment (see config/connections.js and config/models.js )           *
    ***************************************************************************/
 
-  // models: {
-  //   connection: 'someMongodbServer'
-  // }
+  models: {
+    migrate: 'drop',
+    connection: 'mongodbServer',
+    hookTimeout: 60000
+  },
+  domain: 'http://localhost:1337',
+  environment: 'development',
+  initData: '../init/developmentInitData.js',
+  connections: {
+    mongodbServer: {
+      adapter: 'sails-mongo',
+      host: 'localhost',
+      port: 27017,
+      database: 'tomato'
+    }
+  }
 
 };

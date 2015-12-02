@@ -6,7 +6,7 @@
   "keywords": [],
   "dependencies": {
     "bower": "^1.6.6",
-    "ejs": "~0.8.4",
+    "ejs": "^0.8.8",
     "grunt": "0.4.5",
     "grunt-contrib-clean": "~0.6.0",
     "grunt-contrib-coffee": "~0.13.0",
@@ -24,7 +24,10 @@
     "jade": "^1.11.0",
     "rc": "~0.5.0",
     "sails": "^0.11.3",
-    "sails-disk": "~0.10.0"
+    "sails-disk": "~0.10.0",
+    "sails-hook-babel": "^5.0.1",
+    "sails-mongo": "^0.11.5",
+    "waterline": "^0.10.28"
   },
   "scripts": {
     "debug": "node debug app.js",

@@ -22,6 +22,16 @@
 // no matter where we actually lift from.
 process.chdir(__dirname);
 
+// var options = {
+//   loose: "all",
+//   stage: 1,
+//   ignore: null,
+//   only: null,
+//   extensions: null
+// };
+//
+// require("sails-hook-babel/node_modules/babel/register")(options);
+
 // Ensure a "sails" can be located:
 (function() {
   var sails;
@@ -49,7 +59,9 @@ process.chdir(__dirname);
       console.error('Your `.sailsrc` file(s) will be ignored.');
       console.error('To resolve this, run:');
       console.error('npm install rc --save');
-      rc = function () { return {}; };
+      rc = function() {
+        return {};
+      };
     }
   }
 
